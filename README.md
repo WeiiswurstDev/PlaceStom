@@ -18,7 +18,9 @@ PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation o
 ## Upcoming features
 * Storing the player position (or maybe in an extension?)
 * Storing player statistics (blocks placed in total, ...)
+* A better console?
 * Automatically generating a server icon from a specific area (maybe)
+* Checking for updates?
 
 ## Contributing
 We always want to see contributors! To contribute:
