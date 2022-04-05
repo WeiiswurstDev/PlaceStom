@@ -1,4 +1,8 @@
 # PlaceStom
+![Build Status](https://img.shields.io/github/workflow/status/WeiiswurstDev/PlaceStom/Java%20CI%20with%20Gradle?style=for-the-badge)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/weiiswurstdev/PlaceStom?style=for-the-badge)
+
+
 PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation of [r/place](https://www.reddit.com/r/place/).
 
 ## Running PlaceStom
