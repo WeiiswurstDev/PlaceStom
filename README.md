@@ -1,6 +1,12 @@
 # PlaceStom
 PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation of [r/place](https://www.reddit.com/r/place/).
 
+## Running PlaceStom
+1. Clone the repository to your computer
+2. Run ``gradlew shadowJar`` in the folder
+3. Copy the built jar from ``build/libs`` to a new folder (this is where your server will run)
+4. Run the server with ``java -jar PlaceStom-??.jar``.
+
 ## Current features
 * Placing and removing blocks on the canvas
 * Loading and storing the canvas in an [H2 database](https://h2database.com/html/main.html)
