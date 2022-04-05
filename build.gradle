@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.0"
+}
+
+group 'dev.weiiswurst'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spongepowered.org/maven' }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compileOnly 'org.jetbrains:annotations:23.0.0'
+    implementation 'com.github.Minestom:Minestom:26a293e51b'
+    implementation 'com.j256.ormlite:ormlite-jdbc:6.1'
+    implementation 'com.h2database:h2:2.1.210'
+}
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': 'dev.weiiswurst.placestom.PlaceServer',
+                "Multi-Release": true
+    }
+}
