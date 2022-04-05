@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.minestom.server.event.server.ServerListPingEvent;
 import net.minestom.server.ping.ResponseData;
 
-import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;

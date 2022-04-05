@@ -20,7 +20,7 @@ public record PlaceLoader(
     public void generateChunkData(@NotNull ChunkBatch batch, int chunkX, int chunkZ) {
         ChunkData chunkData = loadData(chunkX, chunkZ);
         if (chunkData == null) {
-            MinecraftServer.LOGGER.error("The chunk at x="+chunkX+" | z="+chunkZ+" could not be loaded.");
+            MinecraftServer.LOGGER.error("The chunk at x={} | z={} could not be loaded.", chunkX, chunkZ);
             return;
         }
         for (byte x = 0; x < Chunk.CHUNK_SIZE_X; x++) {
