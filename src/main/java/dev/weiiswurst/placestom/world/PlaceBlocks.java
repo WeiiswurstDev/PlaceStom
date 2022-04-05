@@ -44,5 +44,7 @@ public class PlaceBlocks {
         }
     }
 
+    private PlaceBlocks() {
+    }
 
 }

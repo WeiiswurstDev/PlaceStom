@@ -20,12 +20,12 @@ public class CooldownCommand extends Command {
     public CooldownCommand(PlayerActionCoolDown coolDown) {
         super("cooldown");
         this.coolDown = coolDown;
-        // setCondition((sender, commandString) -> sender instanceof Player);
-        /*setDefaultExecutor((sender, context) -> {
+        setCondition((sender, commandString) -> sender instanceof Player);
+        setDefaultExecutor((sender, context) -> {
             if (sender instanceof Player player) {
                 player.sendMessage("Remaining: "+coolDown.getCoolDownTime(player.getUuid()) + "ms");
             }
-        });*/
+        });
         addSubcommand(new NoCooldown());
         addSubcommand(new SetCooldownOnce());
     }

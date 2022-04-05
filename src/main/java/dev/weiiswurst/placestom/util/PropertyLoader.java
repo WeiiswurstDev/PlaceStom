@@ -16,6 +16,9 @@ import java.util.Collections;
 
 public class PropertyLoader {
 
+    private PropertyLoader() {
+    }
+
     @ApiStatus.Internal
     public static void loadProperties() throws IOException, URISyntaxException {
         File propertiesFile = new File("./server.properties");

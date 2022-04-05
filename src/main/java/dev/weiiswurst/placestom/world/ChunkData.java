@@ -13,8 +13,8 @@ public class ChunkData {
     @DatabaseField(index = true, canBeNull = false, id = true)
     private int chunkCoords;
 
-    @DatabaseField(canBeNull = false, dataType=DataType.BYTE_ARRAY)
-    private byte[] chunkData;
+    @DatabaseField(canBeNull = false, dataType=DataType.BYTE_ARRAY, columnName = "chunkData")
+    private byte[] serializedBlocks;
 
     private final int chunkX;
     private final int chunkZ;
@@ -32,15 +32,15 @@ public class ChunkData {
     }
 
     public void clear() {
-        chunkData = new byte[256];
+        serializedBlocks = new byte[256];
     }
 
     public byte getBlockAt(byte x, byte z) {
-        return chunkData[x*16+z];
+        return serializedBlocks[x*16+z];
     }
 
     public void setBlockAt(int index, byte block) {
-        chunkData[index] = block;
+        serializedBlocks[index] = block;
     }
 
     public int getChunkX() {

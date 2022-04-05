@@ -17,10 +17,8 @@ public class PlayerActionCoolDown {
 
     public boolean performAction(UUID player) {
         long currentTime = System.currentTimeMillis();
-        if (playerCoolDownMap.containsKey(player)) {
-            if (playerCoolDownMap.get(player) > currentTime) {
+        if (playerCoolDownMap.containsKey(player) && playerCoolDownMap.get(player) > currentTime) {
                 return false;
-            }
         }
         playerCoolDownMap.put(player, currentTime + 1000L * COOL_DOWN_TIME_SECONDS);
         return true;

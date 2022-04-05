@@ -21,17 +21,17 @@ public class MotdListener implements Consumer<ServerListPingEvent> {
     private final String serverIcon;
 
     public MotdListener() {
-        String serverIcon;
+        String iconBase64;
         try {
             BufferedImage image = ImageIO.read(new File("./server-icon.png"));
             ByteArrayOutputStream iconOutputStream = new ByteArrayOutputStream();
             ImageIO.write(image, "png", iconOutputStream);
-            serverIcon = Base64.getEncoder().encodeToString(iconOutputStream.toByteArray());
+            iconBase64 = Base64.getEncoder().encodeToString(iconOutputStream.toByteArray());
         } catch (IOException e) {
             LOGGER.info("No server icon found. Place a server icon at ./server-icon.png (dimensions: 64x64)");
-            serverIcon = "";
+            iconBase64 = "";
         }
-        this.serverIcon = "data:image/png;base64," + serverIcon;
+        this.serverIcon = "data:image/png;base64," + iconBase64;
     }
 
     @Override
