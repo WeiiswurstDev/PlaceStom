@@ -1,7 +1,7 @@
 # PlaceStom
 ![Build Status](https://img.shields.io/github/workflow/status/WeiiswurstDev/PlaceStom/Java%20CI%20with%20Gradle?style=for-the-badge)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/weiiswurstdev/PlaceStom?style=for-the-badge)
-
+![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/WeiiswurstDev_PlaceStom?server=https%3A%2F%2Fsonarcloud.io&sonarVersion=8.9&style=for-the-badge)
 
 PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation of [r/place](https://www.reddit.com/r/place/).
 
