@@ -3,6 +3,7 @@ package dev.weiiswurst.placestom.world;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import net.minestom.server.entity.Player;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.UUID;
 
@@ -18,6 +19,7 @@ public class PlayerPlacementLog {
     @DatabaseField(canBeNull = false)
     private String playerName;
 
+    @ApiStatus.Internal
     public PlayerPlacementLog() {
 
     }

@@ -3,6 +3,7 @@ package dev.weiiswurst.placestom.util;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.minestom.server.entity.Player;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class PlayerActionCoolDown {
         }
     }
 
+    @ApiStatus.Internal
     public void applyAnimation(Player player) {
         Long time = playerCoolDownMap.get(player.getUuid());
         if (time == null) {

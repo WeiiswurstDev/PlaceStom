@@ -1,5 +1,7 @@
 package dev.weiiswurst.placestom.util;
 
+import org.jetbrains.annotations.ApiStatus;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -14,6 +16,7 @@ import java.util.Collections;
 
 public class PropertyLoader {
 
+    @ApiStatus.Internal
     public static void loadProperties() throws IOException, URISyntaxException {
         File propertiesFile = new File("./server.properties");
         if (!propertiesFile.exists()) {
