@@ -5,6 +5,7 @@ import net.minestom.server.item.Material;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,7 @@ public class PlaceBlocks {
             );
         } else {
             configMaterials.add(0, DEFAULT_BLOCK.registry().material());
-            ALLOWED_BLOCKS = configMaterials;
+            ALLOWED_BLOCKS = Collections.unmodifiableList(configMaterials);
         }
     }
 

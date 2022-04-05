@@ -6,7 +6,6 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.instance.InstanceContainer;
 import net.minestom.server.item.ItemStack;
-import net.minestom.server.item.Material;
 
 import java.util.function.Consumer;
 

@@ -2,12 +2,10 @@ package dev.weiiswurst.placestom.commands;
 
 import com.j256.ormlite.dao.Dao;
 import dev.weiiswurst.placestom.world.PlayerPlacementLog;
-import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.builder.Command;
 import net.minestom.server.command.builder.condition.Conditions;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
-import net.minestom.server.utils.mojang.MojangUtils;
 
 import java.sql.SQLException;
 

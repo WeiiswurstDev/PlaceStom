@@ -27,7 +27,9 @@ public class PropertyLoader {
             fixPathFromJar(defaultPropertiesUrl);
             Files.copy(Paths.get(defaultPropertiesUrl), new FileOutputStream(propertiesFile));
         }
-        System.getProperties().load(new FileReader(propertiesFile));
+        try (FileReader reader = new FileReader(propertiesFile)) {
+            System.getProperties().load(reader);
+        }
     }
 
     private static void fixPathFromJar(URI uri) throws IOException {

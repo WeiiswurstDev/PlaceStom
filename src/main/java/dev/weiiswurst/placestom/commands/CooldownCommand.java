@@ -38,7 +38,7 @@ public class CooldownCommand extends Command {
             CommandExecutor executor = (sender, context) ->
                     context.get(targetArgument).find(sender).stream()
                             // The argument only accepts players, so we can safely convert to players here
-                            .map(entity -> (Player) entity)
+                            .map(Player.class::cast)
                             .forEach(player -> player.addPermission(NO_COOLDOWN_PERMISSION));
             addSyntax(executor, targetArgument);
         }
