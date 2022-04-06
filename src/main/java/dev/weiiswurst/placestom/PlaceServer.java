@@ -11,11 +11,13 @@ import dev.weiiswurst.placestom.commands.CooldownCommand;
 import dev.weiiswurst.placestom.commands.SpawnCommand;
 import dev.weiiswurst.placestom.commands.StopCommand;
 import dev.weiiswurst.placestom.commands.TeleportCommand;
+import dev.weiiswurst.placestom.commands.VersionCommand;
 import dev.weiiswurst.placestom.listeners.MotdListener;
 import dev.weiiswurst.placestom.listeners.PlayerBreakBlockListener;
 import dev.weiiswurst.placestom.listeners.PlayerJoinListener;
 import dev.weiiswurst.placestom.listeners.PlayerPlaceBlockListener;
 import dev.weiiswurst.placestom.util.PropertyLoader;
+import dev.weiiswurst.placestom.util.UpdateChecker;
 import dev.weiiswurst.placestom.world.ChunkData;
 import dev.weiiswurst.placestom.world.PlaceLoader;
 import dev.weiiswurst.placestom.util.PlayerActionCoolDown;
@@ -41,6 +43,11 @@ public class PlaceServer {
     public static void main(String[] args) throws SQLException, IOException, URISyntaxException {
         // Loading properties
         PropertyLoader.loadProperties();
+
+        // Check for updates
+        if (Boolean.getBoolean("placestom.check-for-updates")) {
+            UpdateChecker.checkForUpdates();
+        }
 
         // Initialization
         MinecraftServer minecraftServer = MinecraftServer.init();
@@ -88,6 +95,7 @@ public class PlaceServer {
     private static void registerCommands(PlayerActionCoolDown cooldown, Dao<ChunkData, Integer> chunkDao, Dao<PlayerPlacementLog, Long> playerDao) {
         CommandManager commandManager = MinecraftServer.getCommandManager();
         commandManager.register(new StopCommand());
+        commandManager.register(new VersionCommand());
         commandManager.register(new CooldownCommand(cooldown));
         commandManager.register(new SpawnCommand());
         commandManager.register(new TeleportCommand());
