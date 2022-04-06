@@ -19,13 +19,14 @@ PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation o
 * Admin commands:
   * No cooldown for the admin (Permission: placestom.noCooldown)
   * Change cooldown for everyone (Permission: placestom.setCooldown)
-  * (You need an extension like [JustPermissions](https://github.com/JustDoom/JustPermissions))
+  * Clear a chunk (/clearchunk, `placestom.clearchunk`)
+  * Generate a server icon from the canvas around you (/generateservericon, `placestom.servericon`)
+  * (You need an extension like [JustPermissions](https://github.com/JustDoom/JustPermissions) to give players permissions)
 
 ## Upcoming features
 * Storing the player position (or maybe in an extension?)
 * Storing player statistics (blocks placed in total, ...)
 * A better console?
-* Automatically generating a server icon from a specific area (maybe)
 
 ## Contributing
 We always want to see contributors! To contribute:
