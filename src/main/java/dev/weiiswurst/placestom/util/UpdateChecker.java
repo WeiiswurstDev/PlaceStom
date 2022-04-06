@@ -17,6 +17,7 @@ public class UpdateChecker {
 
     // Gets replaced by blossom at build time
     private static final String CURRENT_VERSION = "&version";
+    private static final String UPDATE_URI = "&updateUri";
 
     private static final Logger LOGGER = LoggerFactory.getLogger("Update Checker");
 
@@ -30,7 +31,7 @@ public class UpdateChecker {
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .GET().timeout(Duration.ofSeconds(10)).version(HttpClient.Version.HTTP_2)
-                    .uri(new URI("https://api.github.com/repos/WeiiswurstDev/PlaceStom/releases/latest")).build();
+                    .uri(new URI(UPDATE_URI)).build();
             httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenApply(HttpResponse::body)
                     .thenApply(JsonParser::parseString)

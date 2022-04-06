@@ -24,6 +24,7 @@ dependencies {
 blossom {
     replaceToken("&version", version)
     replaceToken("&implementationName", rootProject.name)
+    replaceToken("&updateUri", "https://api.github.com/repos/WeiiswurstDev/PlaceStom/releases/latest")
 }
 
 shadowJar {
