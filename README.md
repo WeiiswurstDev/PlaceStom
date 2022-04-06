@@ -14,6 +14,7 @@ PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation o
 ## Current features
 * Placing and removing blocks on the canvas
 * Loading and storing the canvas in an [H2 database](https://h2database.com/html/main.html)
+* Checking for updates
 * Admin commands:
   * No cooldown for the admin (Permission: placestom.noCooldown)
   * Change cooldown for everyone (Permission: placestom.setCooldown)
@@ -24,7 +25,6 @@ PlaceStom is a [Minestom](https://github.com/Minestom/Minestom) implementation o
 * Storing player statistics (blocks placed in total, ...)
 * A better console?
 * Automatically generating a server icon from a specific area (maybe)
-* Checking for updates?
 
 ## Contributing
 We always want to see contributors! To contribute:
