@@ -27,7 +27,7 @@ public class ChunkData {
     public ChunkData(int chunkX, int chunkZ) {
         this.chunkX = chunkX;
         this.chunkZ = chunkZ;
-        clear();
+        serializedBlocks = new byte[256];
         chunkCoords = toDatabaseIndex(chunkX, chunkZ);
     }
 

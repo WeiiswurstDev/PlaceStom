@@ -5,15 +5,15 @@ import net.kyori.adventure.sound.Sound;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerActionCoolDown {
 
     public static final int COOL_DOWN_TIME_SECONDS = Integer.getInteger("placestom.cooldown", 3);
 
-    private final Map<UUID, Long> playerCoolDownMap = new HashMap<>();
+    private final Map<UUID, Long> playerCoolDownMap = new ConcurrentHashMap<>();
 
     public boolean performAction(UUID player) {
         long currentTime = System.currentTimeMillis();

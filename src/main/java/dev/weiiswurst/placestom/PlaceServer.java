@@ -11,6 +11,7 @@ import dev.weiiswurst.placestom.commands.CooldownCommand;
 import dev.weiiswurst.placestom.commands.SpawnCommand;
 import dev.weiiswurst.placestom.commands.StopCommand;
 import dev.weiiswurst.placestom.commands.TeleportCommand;
+import dev.weiiswurst.placestom.commands.UpdateServerIconCommand;
 import dev.weiiswurst.placestom.commands.VersionCommand;
 import dev.weiiswurst.placestom.listeners.MotdListener;
 import dev.weiiswurst.placestom.listeners.PlayerBreakBlockListener;
@@ -38,7 +39,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
-public class PlaceServer {
+public final class PlaceServer {
+
+    private PlaceServer() {
+
+    }
 
     public static void main(String[] args) throws SQLException, IOException, URISyntaxException {
         // Loading properties
@@ -101,6 +106,7 @@ public class PlaceServer {
         commandManager.register(new TeleportCommand());
         commandManager.register(new ClearChunkCommand(chunkDao));
         commandManager.register(new BlameCommand(playerDao));
+        commandManager.register(new UpdateServerIconCommand());
     }
 
     private static void registerListeners(InstanceContainer instanceContainer, Dao<ChunkData, Integer> chunkDao,

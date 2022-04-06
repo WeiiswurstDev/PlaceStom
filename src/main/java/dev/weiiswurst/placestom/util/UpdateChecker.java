@@ -13,7 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
-public class UpdateChecker {
+public final class UpdateChecker {
 
     // Gets replaced by blossom at build time
     private static final String CURRENT_VERSION = "&version";

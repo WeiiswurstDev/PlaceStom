@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Collections;
 
-public class PropertyLoader {
+public final class PropertyLoader {
 
     private PropertyLoader() {
     }
@@ -23,7 +23,7 @@ public class PropertyLoader {
     public static void loadProperties() throws IOException, URISyntaxException {
         File propertiesFile = new File("./server.properties");
         if (!propertiesFile.exists()) {
-            URI defaultPropertiesUrl = PropertyLoader.class.getClassLoader().getResource("server.properties").toURI();
+            URI defaultPropertiesUrl = Thread.currentThread().getContextClassLoader().getResource("server.properties").toURI();
             fixPathFromJar(defaultPropertiesUrl);
             Files.copy(Paths.get(defaultPropertiesUrl), new FileOutputStream(propertiesFile));
         }
@@ -37,7 +37,7 @@ public class PropertyLoader {
         // see https://stackoverflow.com/a/48298758
         if ("jar".equals(uri.getScheme())) {
             for (FileSystemProvider provider: FileSystemProvider.installedProviders()) {
-                if (provider.getScheme().equalsIgnoreCase("jar")) {
+                if ("jar".equalsIgnoreCase(provider.getScheme())) {
                     try {
                         provider.getFileSystem(uri);
                     } catch (FileSystemNotFoundException e) {

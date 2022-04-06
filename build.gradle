@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'dev.weiiswurst'
-version 'v1.0'
+version 'v1.0.1'
 
 repositories {
     mavenCentral()
@@ -15,10 +15,22 @@ repositories {
 }
 
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+
     compileOnly 'org.jetbrains:annotations:23.0.0'
     implementation 'com.github.Minestom:Minestom:26a293e51b'
     implementation 'com.j256.ormlite:ormlite-jdbc:6.1'
     implementation 'com.h2database:h2:2.1.210'
+    implementation 'org.jline:jline:3.21.0'
+    implementation 'org.jline:jline-terminal-jansi:3.21.0'
+}
+
+test {
+    workingDir = "./Testserver"
+    useJUnitPlatform {
+
+        includeEngines("junit-jupiter")
+    }
 }
 
 blossom {
