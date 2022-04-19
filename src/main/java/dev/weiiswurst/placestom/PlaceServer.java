@@ -39,6 +39,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
+import static dev.weiiswurst.placestom.world.PlaceLoader.PLACE_DIMENSION;
+
 public final class PlaceServer {
 
     private PlaceServer() {
@@ -72,13 +74,16 @@ public final class PlaceServer {
 
         // Create the instance (=world)
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
-        InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
+        MinecraftServer.getDimensionTypeManager().addDimension(PLACE_DIMENSION);
+        InstanceContainer instanceContainer = instanceManager.createInstanceContainer(PLACE_DIMENSION);
 
         // Setup of the instance
-        instanceContainer.setChunkGenerator(new PlaceLoader(chunkDao));
+        instanceContainer.setGenerator(new PlaceLoader(chunkDao));
         instanceContainer.getWorldBorder().setCenter(0, 0);
         instanceContainer.getWorldBorder().setDiameter(Integer.getInteger("placestom.worldborder-size", 500));
         instanceContainer.setTime(6000);
+        // No more sunset and sunrise
+        instanceContainer.setTimeRate(0);
 
         // Instantiate the action cooldown
         PlayerActionCoolDown cooldown = new PlayerActionCoolDown();

@@ -3,21 +3,53 @@ package dev.weiiswurst.placestom.world;
 import com.j256.ormlite.dao.Dao;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.instance.Chunk;
-import net.minestom.server.instance.ChunkGenerator;
-import net.minestom.server.instance.ChunkPopulator;
-import net.minestom.server.instance.batch.ChunkBatch;
 import net.minestom.server.instance.block.Block;
+import net.minestom.server.instance.generator.GenerationUnit;
+import net.minestom.server.instance.generator.Generator;
+import net.minestom.server.utils.NamespaceID;
+import net.minestom.server.world.DimensionType;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public record PlaceLoader(
-        Dao<ChunkData, Integer> chunkDao) implements ChunkGenerator {
+        Dao<ChunkData, Integer> chunkDao) implements Generator {
+
+    public static final DimensionType PLACE_DIMENSION = DimensionType.builder(NamespaceID.from("placestom:world"))
+            .ultrawarm(false)
+            .natural(false)
+            .piglinSafe(false)
+            .respawnAnchorSafe(false)
+            .bedSafe(true)
+            .raidCapable(true)
+            .skylightEnabled(true)
+            .ceilingEnabled(false)
+            .fixedTime(null)
+            // We do a little lighting (fix #3)
+            .ambientLight(2.0f)
+            .height(384)
+            .minY(-64)
+            .logicalHeight(384)
+            .build();
+
 
     @Override
-    public void generateChunkData(@NotNull ChunkBatch batch, int chunkX, int chunkZ) {
+    public void generate(@NotNull GenerationUnit unit) {
+        unit.subdivide().forEach(subUnit -> {
+            if (subUnit.absoluteStart().blockY() != 32) {
+                // Only generate blocks in one subchunk
+                return;
+            }
+            final int chunkX = subUnit.absoluteStart().chunkX();
+            final int chunkZ = subUnit.absoluteStart().chunkZ();
+            setChunkData(subUnit.modifier(), chunkX, chunkZ);
+            if (chunkX == 0 && chunkZ == 0) {
+                subUnit.modifier().setBlock(0, 40, 0, PlaceBlocks.SPAWN_BLOCK);
+            }
+        });
+    }
+
+    private void setChunkData(Block.Setter blockSetter, int chunkX, int chunkZ) {
         ChunkData chunkData = loadData(chunkX, chunkZ);
         if (chunkData == null) {
             MinecraftServer.LOGGER.error("The chunk at x={} | z={} could not be loaded.", chunkX, chunkZ);
@@ -25,13 +57,9 @@ public record PlaceLoader(
         }
         for (byte x = 0; x < Chunk.CHUNK_SIZE_X; x++) {
             for (byte z = 0; z < Chunk.CHUNK_SIZE_Z; z++) {
-                if (chunkX == 0 && chunkZ == 0 && x == 0 && z == 0) {
-                    batch.setBlock(x, 40, z, PlaceBlocks.SPAWN_BLOCK);
-                } else {
-                    byte type = chunkData.getBlockAt(x, z);
-                    batch.setBlock(x, 40, z, PlaceBlocks.ALLOWED_BLOCKS.get(type).block());
-                }
-                batch.setBlock(x, 39, z, Block.WHITE_CONCRETE);
+                byte type = chunkData.getBlockAt(x, z);
+                blockSetter.setBlock(x, 40, z, PlaceBlocks.ALLOWED_BLOCKS.get(type).block());
+                blockSetter.setBlock(x, 39, z, Block.WHITE_CONCRETE);
             }
         }
     }
@@ -49,11 +77,5 @@ public record PlaceLoader(
             ex.printStackTrace();
             return null;
         }
-    }
-
-    @Override
-    public @Nullable
-    List<ChunkPopulator> getPopulators() {
-        return null;
     }
 }
